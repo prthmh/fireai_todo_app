@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  @apply bg-[#1e1e1e];
+  @apply bg-[#202020];
 }
 
 @layer utilities {

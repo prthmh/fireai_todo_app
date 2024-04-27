@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { MdArrowForwardIos } from "react-icons/md";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../context/AuthContext";
+import Loader from "../../components/Loader";
 
 const intialLoginData = {
   username: "",
@@ -34,8 +35,8 @@ const Login = () => {
   }, [token]);
 
   return (
-    <div className=" flex justify-center items-center h-screen text-orange-50">
-      {isLoading && "Loading..."}
+    <div className=" flex justify-center flex-col items-center h-screen text-orange-50">
+      {isLoading && <Loader />}
       <div className=" bg-neutral-950 shadow-3xl rounded-xl border border-neutral-600 p-6 w-72 sm:w-[330px]">
         <h2 className=" text-3xl font-bold mb-3">Login</h2>
         <form className="flex flex-col gap-4">
