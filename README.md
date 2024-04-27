@@ -1,8 +1,31 @@
-# React + Vite
+This is an assignemnt given to me by Fire AI.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+It's a todo app where I have implemented CRUD operatins.
+<br/>
+[Backend Repo Link](https://github.com/prthmh/fireai-todo-backend)
+ 
+ ### Tech Stack
+ 1. React JS
+ 2. JavaScript
+ 3. Tailwind CSS
+ 4. React Router DOM
+ 5. React hot toast
+ 6. React spinner
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### How to install and run locally:
+1. Clone the repository:
+   ```
+   $ git clone https://github.com/prthmh/fireai_todo_app.git
+   ```
+2. Navigate to the project directory:
+   ```
+   $ cd fireai_todo_app
+   ```
+3. Install the required dependencies:
+   ```
+   $ npm install
+   ```
+4. Start the app:
+   ```
+    $ npm run dev
+   ```
