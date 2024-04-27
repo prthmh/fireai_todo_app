@@ -1,11 +1,15 @@
 import { Toaster } from "react-hot-toast";
 import "./App.css";
+import { AuthProvider } from "./context/AuthContext";
+import Routes from "./routes";
 
 function App() {
   return (
     <>
       <Toaster />
-      <h1>Hey</h1>
+      <AuthProvider>
+        <Routes/>
+      </AuthProvider>
     </>
   );
 }

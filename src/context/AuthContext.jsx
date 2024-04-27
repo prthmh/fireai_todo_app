@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useReducer, useState } from "react";
+import { createContext, useEffect, useReducer, useState } from "react";
 import { useContext } from "react";
 
 import reducer from "../reducers/authReducer.js";
@@ -7,9 +7,7 @@ import toast from "react-hot-toast";
 import { signupService } from "../service/auhtServices.js";
 import { AUTHACTIONTYPES } from "../constants.js";
 
-const { createContext } = require("react");
-
-const AuthContext = createContext();
+export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const tokenFromLocalStorage = JSON.parse(
