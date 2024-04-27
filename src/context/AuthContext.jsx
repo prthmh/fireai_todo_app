@@ -47,7 +47,7 @@ export const AuthProvider = ({ children }) => {
       toast.success("Signup Successfull!");
     } catch (err) {
       console.log(err);
-      toast.error(err.message);
+      toast.error(err.response.data.error);
       dispatch({ type: AUTHACTIONTYPES.NOT_LOADING });
     } finally {
       dispatch({ type: AUTHACTIONTYPES.NOT_LOADING });

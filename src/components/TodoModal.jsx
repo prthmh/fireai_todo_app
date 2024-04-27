@@ -43,7 +43,7 @@ const TodoModal = ({ editTodo, setOpenTodoModal, setOpenEditTodoModal }) => {
     setOpenTodoModal && setOpenTodoModal(false);
     setOpenEditTodoModal && setOpenEditTodoModal(false);
   };
-
+  
   return (
     <div
       onClick={toStopPropagation}

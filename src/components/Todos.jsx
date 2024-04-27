@@ -26,7 +26,7 @@ const Todos = ({ todos }) => {
       </h1>
     );
   }
-
+  console.log(todos);
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-9 sm:gap-14">
       {todos.map((t) => (
@@ -38,10 +38,23 @@ const Todos = ({ todos }) => {
           <h2 className=" text-xl font-semibold sm:text-2xl sm:font-bold">
             {t.title}
           </h2>
+          <div>
+            {t.status ? (
+              <span className=" bg-green-600 text-orange-100 p-[6px] rounded-lg text-sm w-fit">
+                Completed
+              </span>
+            ) : (
+              <span className=" bg-red-600 text-orange-100 p-[6px] rounded-lg text-sm w-fit">
+                Not Completed
+              </span>
+            )}
+          </div>
           <div className="flex gap-3">
-            <div className=" bg-neutral-700 text-orange-100 p-[6px] rounded-lg text-sm w-fit">
-              {t.flag}
-            </div>
+            {t.flag && (
+              <div className=" bg-neutral-700 text-orange-100 p-[6px] rounded-lg text-sm w-fit">
+                {t.flag}
+              </div>
+            )}
             {t.priority && (
               <div className=" bg-orange-500 text-orange-50 p-[6px] rounded-lg text-sm w-fit">
                 Priority

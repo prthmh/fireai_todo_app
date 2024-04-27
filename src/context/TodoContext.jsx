@@ -85,7 +85,7 @@ export const TodoProvider = ({ children }) => {
     const todoData = {
       title: editTodo.title,
       description: editTodo.description,
-      status: editTodo.state,
+      status: editTodo.status,
       priority: editTodo.priority,
       flag: editTodo.flag,
       username: editTodo.username,
@@ -144,7 +144,7 @@ export const TodoProvider = ({ children }) => {
         getTodoByIdHandler,
         addTodoHandler,
         editTodoHandler,
-        deleteTodoHandler
+        deleteTodoHandler,
       }}
     >
       {children}

@@ -25,7 +25,16 @@ const Login = () => {
     // e.preventDefaut();
     console.log("form", formData);
     loginHandler(formData);
-    navigate("/");
+    navigate("/home");
+  };
+
+  const guestLogin = () => {
+    const guestUser = {
+      username: import.meta.env.VITE_GUEST_LOGIN_USERNAME,
+      password: import.meta.env.VITE_GUEST_LOGIN_PASSWORD,
+    };
+    loginHandler(guestUser);
+    navigate("/home");
   };
 
   useEffect(() => {
@@ -68,6 +77,12 @@ const Login = () => {
           onClick={onFormSubmit}
         >
           Login
+        </button>
+        <button
+          className=" py-3 rounded-xl text-orange-100 bg-blue-700 font-semibold hover:opacity-65 w-full mt-7"
+          onClick={guestLogin}
+        >
+          Guest Login
         </button>
         <Link
           to="/signup"

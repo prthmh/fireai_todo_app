@@ -4,9 +4,11 @@ import Loader from "../../components/Loader";
 import { useState } from "react";
 import TodoModal from "../../components/TodoModal";
 import { FaMagnifyingGlass } from "react-icons/fa6";
+import { useAuth } from "../../context/AuthContext";
 
 const Home = () => {
   const { todos, isLoading } = useTodo();
+  const { logoutHandler, user } = useAuth();
   const [openTodoModal, setOpenTodoModal] = useState(false);
   const [search, setSearch] = useState("");
 
@@ -16,6 +18,7 @@ const Home = () => {
 
   return (
     <div className=" flex items-center justify-center flex-col gap-7 mt-9 sm:my-12 mx-8">
+      <h1 className=" font-bold text-2xl text-orange-100">{user.username}'s todos</h1>
       <div className="flex justify-evenly items-center w-full">
         <div className="flex items-center gap-2">
           <div className=" text-orange-100">
@@ -34,6 +37,13 @@ const Home = () => {
           className=" bg-orange-50 text-neutral-700 py-2 px-4 text-lg font-semibold rounded-xl"
         >
           Add Todo
+        </button>
+
+        <button
+          onClick={logoutHandler}
+          className=" bg-red-700 text-white py-2 px-4 text-lg font-semibold rounded-xl"
+        >
+          Logout
         </button>
       </div>
       {isLoading ? <Loader /> : <Todos todos={filteredTodos} />}
