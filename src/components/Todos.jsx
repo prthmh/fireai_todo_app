@@ -17,6 +17,16 @@ const Todos = ({ todos }) => {
     navigate(`/todo/${todoId}`);
   };
 
+  if (todos.length <= 0) {
+    return (
+      <h1 className=" text-2xl font-bold text-orange-100">
+        No todos. Add some todos by clicking on the{" "}
+        <span className=" text-orange-500">Add Todo</span> button or search a
+        todo which you have already added.
+      </h1>
+    );
+  }
+
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-9 sm:gap-14">
       {todos.map((t) => (
