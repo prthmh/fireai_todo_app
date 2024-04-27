@@ -15,7 +15,17 @@ function todoReducer(state, action) {
     }
 
     case TODOACTIONTYPES.GET_TODOONPAGE: {
-      return {...state, todoOnPage: payload}
+      return { ...state, todoOnPage: payload };
+    }
+
+    case TODOACTIONTYPES.ADD_TODO: {
+      return { ...state, todos: payload };
+    }
+    case TODOACTIONTYPES.EDIT_TODO: {
+      return { ...state, todos: payload };
+    }
+    case TODOACTIONTYPES.DELETE_TODO: {
+      return { ...state, todos: payload };
     }
     default: {
       return state;

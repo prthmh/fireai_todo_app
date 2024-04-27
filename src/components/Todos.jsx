@@ -1,9 +1,15 @@
 import { useState } from "react";
-import { useTodo } from "../context/TodoContext";
 import { useNavigate } from "react-router-dom";
+import { LuTrash } from "react-icons/lu";
+import { MdModeEdit } from "react-icons/md";
+
+import { useTodo } from "../context/TodoContext";
+import TodoModal from "./TodoModal";
 
 const Todos = ({ todos }) => {
-  const { getTodoByIdHandler } = useTodo();
+  const [openEditTodoModal, setOpenEditTodoModal] = useState(false);
+  const [editTodo, setEditTodo] = useState();
+  const { getTodoByIdHandler, deleteTodoHandler } = useTodo();
   const navigate = useNavigate();
 
   const handleTodoClick = (todoId) => {
@@ -12,16 +18,18 @@ const Todos = ({ todos }) => {
   };
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-14">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-9 sm:gap-14">
       {todos.map((t) => (
         <div
           key={t._id}
           onClick={() => handleTodoClick(t._id)}
-          className=" bg-orange-100 text-neutral-900 p-6 rounded-xl shadow-3xl flex flex-col gap-4"
+          className=" bg-orange-100 text-neutral-800 p-4 sm:p-6 rounded-xl shadow-3xl flex flex-col gap-4"
         >
-          <h2 className=" text-2xl font-bold">{t.title}</h2>
+          <h2 className=" text-xl font-semibold sm:text-2xl sm:font-bold">
+            {t.title}
+          </h2>
           <div className="flex gap-3">
-            <div className=" bg-neutral-800 text-orange-100 p-[6px] rounded-lg text-sm w-fit">
+            <div className=" bg-neutral-700 text-orange-100 p-[6px] rounded-lg text-sm w-fit">
               {t.flag}
             </div>
             {t.priority && (
@@ -30,8 +38,41 @@ const Todos = ({ todos }) => {
               </div>
             )}
           </div>
+          <div className="flex justify-evenly items-center">
+            <div
+              className=" bg-red-600 text-white p-1 rounded-md cursor-pointer"
+              onClick={(e) => {
+                e.stopPropagation();
+                deleteTodoHandler(t._id);
+              }}
+            >
+              <LuTrash size={22} />
+            </div>
+            <div
+              className=" bg-blue-600 text-white p-1 rounded-md cursor-pointer"
+              onClick={(e) => {
+                e.stopPropagation();
+                setEditTodo(t);
+                setOpenEditTodoModal(true);
+              }}
+            >
+              <MdModeEdit size={22} />
+            </div>
+          </div>
         </div>
       ))}
+
+      {openEditTodoModal && (
+        <div
+          className=" flex justify-center items-center fixed inset-0 z-10 bg-opacity-50 backdrop-blur-sm"
+          onClick={() => setOpenEditTodoModal(false)}
+        >
+          <TodoModal
+            editTodo={editTodo}
+            setOpenEditTodoModal={setOpenEditTodoModal}
+          />
+        </div>
+      )}
     </div>
   );
 };
