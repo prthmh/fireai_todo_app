@@ -33,7 +33,7 @@ const Todos = ({ todos }) => {
         <div
           key={t._id}
           onClick={() => handleTodoClick(t._id)}
-          className=" bg-orange-100 text-neutral-800 p-4 sm:p-6 rounded-xl shadow-3xl flex flex-col gap-4"
+          className=" bg-orange-100 text-neutral-800 p-4 sm:p-6 rounded-xl shadow-3xl flex flex-col gap-4 cursor-pointer"
         >
           <h2 className=" text-xl font-semibold sm:text-2xl sm:font-bold">
             {t.title}
