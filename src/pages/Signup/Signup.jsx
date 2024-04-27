@@ -1,7 +1,32 @@
+import { useState } from "react";
 import { MdArrowForwardIos } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
+
+const intialSignupData = {
+  email: "",
+  fullname: "",
+  username: "",
+  password: "",
+};
 
 const Signup = () => {
+  const [formData, setFormData] = useState(intialSignupData);
+  const { signupHandler } = useAuth();
+  const navigate = useNavigate();
+
+  const handleFormChange = (e) => {
+    setFormData((prevState) => ({
+      ...prevState,
+      [e.target.id]: e.target.value,
+    }));
+  };
+
+  const onSubmit = (e) => {
+    signupHandler(formData);
+    navigate("/home");
+  };
+
   return (
     <div className=" flex justify-center items-center h-screen text-orange-50">
       <div className=" bg-neutral-950 shadow-3xl rounded-xl border border-neutral-600 p-6 w-72 sm:w-[340px]">
@@ -16,6 +41,7 @@ const Signup = () => {
             placeholder="Enter Username"
             required
             className="custom-input"
+            onChange={handleFormChange}
           />
           <label htmlFor="email" className=" font-medium">
             Email
@@ -26,6 +52,7 @@ const Signup = () => {
             placeholder="Enter email"
             required
             className="custom-input"
+            onChange={handleFormChange}
           />
           <label htmlFor="fullname" className=" font-medium">
             Fullname
@@ -36,6 +63,7 @@ const Signup = () => {
             placeholder="Enter fullname"
             required
             className="custom-input"
+            onChange={handleFormChange}
           />
           <label htmlFor="password" className=" font-medium">
             Password
@@ -46,14 +74,15 @@ const Signup = () => {
             placeholder="Enter Password"
             required
             className="custom-input"
+            onChange={handleFormChange}
           />
-          <button
-            type="submit"
-            className=" py-3 rounded-xl text-neutral-950 bg-orange-50 font-semibold hover:opacity-65"
-          >
-            Login
-          </button>
         </form>
+        <button
+          onClick={onSubmit}
+          className=" py-3 rounded-xl text-neutral-950 bg-orange-50 font-semibold hover:opacity-65 w-full mt-6"
+        >
+          Signup
+        </button>
         <Link
           to="/login"
           className=" underline flex items-center justify-center gap-2 mt-4"

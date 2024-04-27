@@ -4,7 +4,7 @@ import { useContext } from "react";
 
 import reducer from "../reducers/authReducer.js";
 import toast from "react-hot-toast";
-import { signupService } from "../service/auhtServices.js";
+import { loginService, signupService } from "../service/auhtServices.js";
 import { AUTHACTIONTYPES } from "../constants.js";
 
 export const AuthContext = createContext();
@@ -27,9 +27,12 @@ export const AuthProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialAuthState);
 
   const signupHandler = async ({ email, fullname, username, password }) => {
+    console.log({ email, fullname, username, password });
     dispatch({ type: AUTHACTIONTYPES.LOADING });
     try {
-      const { user, encodedToken } = await signupService({
+      const {
+        data: { user, encodedToken },
+      } = await signupService({
         email,
         fullname,
         username,
@@ -54,11 +57,13 @@ export const AuthProvider = ({ children }) => {
   const loginHandler = async ({ username, password }) => {
     dispatch({ type: AUTHACTIONTYPES.LOADING });
     try {
-      const { user, encodedToken } = await signupService({
+      const {
+        data: { user, encodedToken },
+      } = await loginService({
         username,
         password,
       });
-
+      console.log("login handler", user, encodedToken);
       dispatch({
         type: AUTHACTIONTYPES.LOGIN,
         payload: { user, encodedToken },
@@ -79,9 +84,19 @@ export const AuthProvider = ({ children }) => {
     toast.success("Logged out Successfully");
   };
 
+  const { token, user, isLoading, isLoggedIn } = state;
   return (
     <AuthContext.Provider
-      value={{ state, dispatch, signupHandler, loginHandler, logoutHandler }}
+      value={{
+        token,
+        user,
+        isLoading,
+        isLoggedIn,
+        dispatch,
+        signupHandler,
+        loginHandler,
+        logoutHandler,
+      }}
     >
       {children}
     </AuthContext.Provider>

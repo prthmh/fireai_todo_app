@@ -22,7 +22,7 @@ const Routes = () => {
       element: <ProtectedRoute />,
       children: [
         {
-          path: "/",
+          path: "/home",
           element: <Home />,
         },
       ],
@@ -37,7 +37,8 @@ const Routes = () => {
   const router = createBrowserRouter([
     ...publicRoutes,
     ...privateRoutes,
-    ...(!token ? routesForNonAuthenticated : []),
+    ...routesForNonAuthenticated,
+    // ...(!token ? routesForNonAuthenticated : []),
   ]);
 
   return <RouterProvider router={router} />;

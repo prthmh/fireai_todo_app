@@ -13,7 +13,7 @@ function authReducer(state, action) {
           user,
         })
       );
-
+      console.log("authReducer ", user, encodedToken);
       return {
         ...state,
         token: encodedToken,
