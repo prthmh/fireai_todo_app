@@ -12,6 +12,8 @@ It's a todo app where I have implemented CRUD operatins.
  5. React hot toast
  6. React spinner
 
+ #### Demo Video - https://youtu.be/oxXjtRcSf6Y
+
 ### How to install and run locally:
 1. Clone the repository:
    ```
