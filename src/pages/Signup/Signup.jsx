@@ -24,7 +24,7 @@ const Signup = () => {
 
   const onSubmit = (e) => {
     signupHandler(formData);
-    navigate("/home");
+    navigate("/");
   };
 
   return (

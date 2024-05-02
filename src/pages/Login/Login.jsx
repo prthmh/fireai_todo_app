@@ -25,7 +25,7 @@ const Login = () => {
     // e.preventDefaut();
     console.log("form", formData);
     loginHandler(formData);
-    navigate("/home");
+    navigate("/");
   };
 
   const guestLogin = () => {
@@ -34,12 +34,12 @@ const Login = () => {
       password: import.meta.env.VITE_GUEST_LOGIN_PASSWORD,
     };
     loginHandler(guestUser);
-    navigate("/home");
+    navigate("/");
   };
 
   useEffect(() => {
     if (token) {
-      navigate("/home");
+      navigate("/");
     }
   }, [token]);
 
